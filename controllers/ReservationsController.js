@@ -35,10 +35,17 @@ exports.show = async (req, res) => {
   }
 };
 
+const restaurants = [
+    'Kelseys',
+    'Montanas',
+    'Harveys',
+    'Swiss Chalet',
+    'Outbacks'
+  ];
 exports.new = (req, res) => {
   res.render(`${viewPath}/new`, {
     pageTitle: 'New Reservation',
-    reservations: restaurants
+    restaurants : restaurants
   });
 };
 
@@ -64,7 +71,8 @@ exports.edit = async (req, res) => {
     const reservation = await Reservation.findById(req.params.id);
     res.render(`${viewPath}/edit`, {
       pageTitle: reservation.title,
-      formData: reservation
+      formData: reservation,
+      restaurants : restaurants
     });
   } catch (error) {
     req.flash('danger', `There was an error accessing your reservation: ${error}`);

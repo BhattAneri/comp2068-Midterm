@@ -14,13 +14,16 @@ const ReservationSchema = new mongoose.Schema({
         ref: 'User',
         required: true
       },
-      quantity: {
+      quantityOfGuests: {
         type: Number,
         required: true // This must exist
       },
-      restaurantname: {
+      restaurant: {
         type: String,
         required: true
+      },
+      dateAndTime: {
+        type: Date,
       },
      
     }, {
