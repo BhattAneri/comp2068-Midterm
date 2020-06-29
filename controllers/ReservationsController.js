@@ -5,8 +5,10 @@ const User = require('../models/user');
 
 exports.index = async (req, res) => {
   try {
+    const { user: email } = req.session.passport;
+    const user = await User.findOne({email: email});
     const reservations = await Reservation
-      .find()
+      .find({user: user._id})
       .populate('user')
       .sort({updatedAt: 'desc'});
 
