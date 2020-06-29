@@ -24,6 +24,15 @@ const ReservationSchema = new mongoose.Schema({
       },
       dateAndTime: {
         type: Date,
+        required: true,
+        set: val => {
+          return new Date(val);
+        },
+        get: val => {
+          // return `${val.getFullYear()}-${val.getMonth() + 1}-${val.getDate()}T${val.getHours()}:${val.getMinutes()}:${val.getSeconds()}`;
+          const date = val.toISOString();
+          return date.substring(0, date.length - 1);
+        }
       },
      
     }, {
